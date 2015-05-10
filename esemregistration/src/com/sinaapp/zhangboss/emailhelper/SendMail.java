@@ -26,7 +26,7 @@ public class SendMail{
 	public static void sendEmail(User user,String cont){
 		
 		String smtp = "smtp.163.com";//smtp服务器
-		String from = "zhangxinglong1990@163.com";//发件人
+		String from = "123@163.com";//发件人
 		String to = user.getEmail();//收件人
 		String copyto = "zhangxinglong1990@163.com";//抄送
 		String subject = "ESEIW: Money Confirmed!";//主题
