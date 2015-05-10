@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+<insert id="saveUser" parameterType="User">
+	insert into user (jiaofeiornot,beizhu,title,firstname,lastname,company,position,otherposition,address,city,postalcode,country,email,phone,fax,needinviforvisa,birthday,
+	sex,registtime,counofciti,passportnum,cityvisaissue,hardornot,esemregisbefjune,isernregisbefjune,promiseregisbefjune,iaseseregisbefjune,idoeseregisbefjune,
+	esemregisaftjune,isernregisaftjune,promiseregisaftjune,iaseseregisaftjune,idoeseregisaftjune,areyouauthor,paperid,papertitle,specialneeds,paymethod,totalmoney,memberofieacm,memberid,sesregisbefjune,sesregisaftjune,orderid,
+	v_pmode,v_pstatus,v_pstring,v_amount,v_moneytype,ddate)
+	values("no",#{beizhu},#{title},#{firstname},#{lastname},#{company},#{position},#{otherposition},#{address},#{city},#{postalcode},#{country},#{email},#{phone},#{fax},#{needinviforvisa},#{birthday},
+	#{sex},#{registtime},#{counofciti},#{passportnum},#{cityvisaissue},#{hardornot},#{esemregisbefjune},#{isernregisbefjune},#{promiseregisbefjune},#{iaseseregisbefjune},#{idoeseregisbefjune},
+	#{esemregisaftjune},#{isernregisaftjune},#{promiseregisaftjune},#{iaseseregisaftjune},#{idoeseregisaftjune},#{areyouauthor},#{paperid},#{papertitle},#{specialneeds},#{paymethod},#{totalmoney},#{memberofieacm},#{memberid},#{sesregisbefjune},#{sesregisaftjune},#{orderid},
+	#{v_pmode},#{v_pstatus},#{v_pstring},#{v_amount},#{v_moneytype},#{ddate})
+</insert>
+
+<delete id="deleteById" parameterType="long">
+	delete  from user where id=#{id}
+</delete>
+
+<update id="updateUser" parameterType="User">
+	update user set 
+		jiaofeiornot=#{jiaofeiornot},
+		beizhu=#{beizhu},
+		email=#{email},
+		ddate=#{ddate},
+		orderid=#{orderid}
+		where id=#{id}
+</update>
+
+<update id="updateUserAftPayed" parameterType="User">
+	update user set 
+		jiaofeiornot=#{jiaofeiornot},
+		v_pmode=#{v_pmode},
+		v_pstatus=#{v_pstatus},
+		v_pstring=#{v_pstring},
+		v_amount=#{v_amount},
+		v_moneytype=#{v_moneytype},
+		where id=#{id}
+</update>
+
+<select id="findById" parameterType="long" resultMap="UserMap">
+	select * from user where id=#{id}
+</select>
+<select id="findByJiaoFeiOrNot" parameterType="String" resultMap="UserMap">
+	select * from user where jiaofeiornot=#{jiaofeiornot}
+</select>
+
+<select id="findByDateEmail" parameterType="User" resultMap="UserMap">
+	select * from user where email=#{email} and registtime=#{registtime}
+</select>
+
+<select id="findByEmail" parameterType="String" resultMap="UserMap">
+	select * from user where email=#{email}
+</select>
+
+<select id="findByOrderId" parameterType="String" resultMap="UserMap">
+	select * from user where orderid=#{orderid}
+</select>
+
+<select id="findByLimit" parameterType="int" resultMap="UserMap">
+	select * from user limit 0,#{off}
+</select>
+
+<resultMap type="User" id="UserMap">
+	<id property="id" column="id"/>
+	<result property="jiaofeiornot" column="jiaofeiornot"/>
+	<result property="beizhu" column="beizhu"/>
+	<result property="title" column="title"/>
+	<result property="firstname" column="firstname"/>
+	<result property="lastname" column="lastname"/>
+	<result property="company" column="company"/>
+	<result property="position" column="position"/>
+	<result property="otherposition" column="otherposition"/>
+	<result property="address" column="address"/>
+	<result property="city" column="city"/>
+	<result property="postalcode" column="postalcode"/>
+	<result property="country" column="country"/>
+	<result property="email" column="email"/>
+	<result property="phone" column="phone"/>
+	<result property="fax" column="fax"/>
+	<result property="needinviforvisa" column="needinviforvisa"/>
+	<result property="birthday" column="birthday"/>
+	
+	<result property="sex" column="sex"/>
+	<result property="registtime" column="registtime"/>
+	<result property="counofciti" column="counofciti"/>
+	<result property="passportnum" column="passportnum"/>
+	<result property="cityvisaissue" column="cityvisaissue"/>
+	<result property="hardornot" column="hardornot"/>
+	<result property="esemregisbefjune" column="esemregisbefjune"/>
+	<result property="isernregisbefjune" column="isernregisbefjune"/>
+	<result property="promiseregisbefjune" column="promiseregisbefjune"/>
+	<result property="iaseseregisbefjune" column="iaseseregisbefjune"/>
+	<result property="idoeseregisbefjune" column="idoeseregisbefjune"/>
+	<result property="esemregisaftjune" column="esemregisaftjune"/>
+	<result property="isernregisaftjune" column="isernregisaftjune"/>
+	<result property="promiseregisaftjune" column="promiseregisaftjune"/>
+	<result property="iaseseregisaftjune" column="iaseseregisaftjune"/>
+	<result property="idoeseregisaftjune" column="idoeseregisaftjune"/>
+	<result property="sesregisbefjune" column="sesregisbefjune"/>
+	<result property="sesregisaftjune" column="sesregisaftjune"/>
+		
+	<result property="areyouauthor" column="areyouauthor"/>
+	<result property="paperid" column="paperid"/>
+	<result property="papertitle" column="papertitle"/>
+	<result property="specialneeds" column="specialneeds"/>
+	<result property="paymethod" column="paymethod"/>
+	<result property="totalmoney" column="totalmoney"/>
+	<result property="memberofieacm" column="memberofieacm"/>
+	<result property="memberid" column="memberid"/>
+	<result property="orderid" column="orderid"/>
+	
+	<result property="v_pmode" column="v_pmode"/>
+	<result property="v_pstatus" column="v_pstatus"/>
+	<result property="v_pstring" column="v_pstring"/>
+	<result property="v_amount" column="v_amount"/>
+	<result property="v_moneytype" column="v_moneytype"/>
+	
+	<result property="ddate" column="ddate"/>
+
+</resultMap>
+
+</mapper>
